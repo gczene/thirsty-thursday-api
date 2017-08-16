@@ -9,6 +9,7 @@ app.get('/', function(req, res){
 });
 
 io.on('connection', function(socket){
+  console.log('user connected');
   socket.on('ADD_BOOZE_TO_LIST', ({username, message}) => {
     store.add(username, message.item);
     io.emit('ALL_LIST', store.cache);
