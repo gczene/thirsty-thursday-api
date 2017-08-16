@@ -36,6 +36,13 @@ io.on('connection', function(socket){
     store.cache = {};
     io.emit('ALL_DONE', store.cache);
   });
+
+  socket.on('RECONNECT', () => {
+    socket.emit('RECONNECT', {
+      takenBy: store.takenBy,
+      items: store.cache
+    })
+  });
 });
 
 http.listen(PORT, function(){
